@@ -1,0 +1,14 @@
+create a math game that 
+1. given 2 random numbers 
+2. create an exercise with operators + - / * randomly
+3. The numbers range default is 
+1-10 for * operator 
+1-100 for + operator
+1-100 for - operator
+numbers until 20 for / operator that decision answer is with no remnant
+
+If the user answers correctly on 5 exercises, he will be notified with a smiley popup
+
+All the answers and questions will be logged in a list for tracking the user's progress
+
+this will be written in HTML
