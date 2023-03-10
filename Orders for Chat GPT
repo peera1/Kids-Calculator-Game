@@ -1,14 +1,10 @@
-create a math game that 
-1. given 2 random numbers 
-2. create an exercise with operators + - / * randomly
-3. The numbers range default is 
-1-10 for * operator 
-1-100 for + operator
-1-100 for - operator
-numbers until 20 for / operator that decision answer is with no remnant
+Plus Game :
+The code above is an HTML page that implements a simple math game using JavaScript. The game displays a math question using the addition operator for numbers in the range of 0-100, and prompts the player to enter an answer in a text field. The player can then click a "Check" button to check if their answer is correct.
 
-If the user answers correctly on 5 exercises, he will be notified with a smiley popup
+The game keeps track of the player's score, which starts at zero, and increases the score by one for each correct answer. If the player answers five questions in a row correctly, the game displays a message congratulating the player for winning.
 
-All the answers and questions will be logged in a list for tracking the user's progress
+If the player answers a question incorrectly, the game displays the correct answer, resets the player's correct answers in a row to zero, and decreases the score by one.
 
-this will be written in HTML
+In addition to the game itself, the code also includes a list that displays all the exercises and their corresponding answers. The list is updated each time the player answers a question, and shows the exercise, the player's answer, and whether the answer was correct or incorrect.
+
+The code uses JavaScript to generate random math questions, check the player's answers, update the score and exercise list, and display messages and alerts when necessary. The code also uses HTML and CSS to create the layout and styling of the game and the exercise list.
