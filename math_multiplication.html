@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Math Game</title>
+  </head>
+  <body>
+    <h1>Math Game</h1>
+    <p>Enter your answer and click "Check" to see if you're correct.</p>
+    <p id="question"></p>
+    <input type="number" id="answer" />
+    <button onclick="checkAnswer()">Check</button>
+    <p id="result"></p>
+    <p id="score"></p>
+    <h2>Exercise List</h2>
+    <ul id="exercise-list"></ul>
+    
+    <script>
+      // Initialize game variables
+      var correctAnswer, correctAnswersInARow = 0, score = 0;
+      var exerciseList = [];
+      
+      // Generate a random math question
+      function generateQuestion() {
+        var num1 = Math.floor(Math.random() * 13);
+        var num2 = Math.floor(Math.random() * 13);
+        correctAnswer = num1 * num2;
+        var questionString = num1 + " &times; " + num2 + " = ";
+        document.getElementById("question").innerHTML = questionString;
+      }
+      
+      // Check the player's answer
+      function checkAnswer() {
+        var playerAnswer = parseInt(document.getElementById("answer").value);
+        if (playerAnswer === correctAnswer) {
+          document.getElementById("result").innerHTML = "Correct!";
+          correctAnswersInARow++;
+          score++;
+          document.getElementById("score").innerHTML = "Score: " + score;
+          if (correctAnswersInARow === 5) {
+            alert("Congratulations, you won!");
+          }
+          exerciseList.push({ exercise: document.getElementById("question").textContent, answer: playerAnswer, result: "Correct!" });
+        } else {
+          document.getElementById("result").innerHTML = "Incorrect. The correct answer was " + correctAnswer;
+          correctAnswersInARow = 0;
+          score--;
+          document.getElementById("score").innerHTML = "Score: " + score;
+          exerciseList.push({ exercise: document.getElementById("question").textContent, answer: playerAnswer, result: "Incorrect" });
+        }
+        document.getElementById("answer").value = "";
+        generateQuestion();
+        displayExerciseList();
+      }
+      
+      // Generate the first question
+      generateQuestion();
+      
+      // Display the exercise list
+      function displayExerciseList() {
+        var exerciseListHTML = "";
+        for (var i = 0; i < exerciseList.length; i++) {
+          exerciseListHTML += "<li>" + exerciseList[i].exercise + " " + exerciseList[i].answer + " " + exerciseList[i].result + "</li>";
+        }
+        document.getElementById("exercise-list").innerHTML = exerciseListHTML;
+      }
+    </script>
+  </body>
+</html>
