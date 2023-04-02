@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Math Game /</title>
+	<style>
+      body {
+        background-color: #f8f8f8;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        margin: 0;
+        padding: 20px;
+      }
+      
+      h1, h2 {
+        padding: 10px;
+      }
+      
+      h1 {
+        background-color: #4CAF50;
+        color: #fff;
+        border-radius: 5px;
+        text-align: center;
+      }
+      
+      h2 {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>תרגילי חילוק</h1>
+    <p>Enter your answer and click "Check" to see if you're correct.</p>
+    <p id="question"></p>
+    <input type="number" id="answer" />
+    <button onclick="checkAnswer()">Check</button>
+    <p id="result"></p>
+    <p id="score"></p>
+    <h2>Exercise List</h2>
+    <ul id="exercise-list"></ul>
+    
+    <script>
+      // Initialize game variables
+      var correctAnswer, correctAnswersInARow = 0, score = 0;
+      var exerciseList = [];
+      
+      // Generate a random math question
+      function generateQuestion() {
+        var num1 = Math.floor(Math.random() * 21);
+        var num2 = Math.floor(Math.random() * 21);
+        correctAnswer = num1 / num2;
+        if (num1 % num2 !== 0) {
+          generateQuestion();
+        } else {
+          var questionString = num1 + " / " + num2 + " = ";
+          document.getElementById("question").innerHTML = questionString;
+        }
+      }
+      
+      // Check the player's answer
+      function checkAnswer() {
+        var playerAnswer = parseFloat(document.getElementById("answer").value);
+        if (playerAnswer === correctAnswer) {
+          document.getElementById("result").innerHTML = "יפה מאוד";
+          correctAnswersInARow++;
+          score++;
+          document.getElementById("score").innerHTML = "Score: " + score;
+          if (correctAnswersInARow === 5) {
+            alert("כל הכבוד, נצחת במשחק");
+          }
+          exerciseList.push({ exercise: document.getElementById("question").textContent, answer: playerAnswer, result: "יפה מאוד" });
+        } else {
+          document.getElementById("result").innerHTML = "Incorrect. The correct answer was " + correctAnswer.toFixed(2);
+          correctAnswersInARow = 0;
+          score--;
+          document.getElementById("score").innerHTML = "Score: " + score;
+          exerciseList.push({ exercise: document.getElementById("question").textContent, answer: playerAnswer, result: "Incorrect" });
+        }
+        document.getElementById("answer").value = "";
+        generateQuestion();
+        displayExerciseList();
+      }
+      
+      // Generate the first question
+      generateQuestion();
+      
+      // Display the exercise list
+      function displayExerciseList() {
+        var exerciseListHTML = "";
+        for (var i = 0; i < exerciseList.length; i++) {
+          exerciseListHTML += "<li>" + exerciseList[i].exercise + " " + exerciseList[i].answer + " " + exerciseList[i].result + "</li>";
+        }
+        document.getElementById("exercise-list").innerHTML = exerciseListHTML;
+      }
+    </script>
+  </body>
+</html>
