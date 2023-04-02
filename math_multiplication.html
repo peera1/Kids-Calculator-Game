@@ -1,10 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Math Game</title>
+    <title>Math Game *</title>
+	<style>
+      body {
+        background-color: #f8f8f8;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        margin: 0;
+        padding: 20px;
+      }
+      
+      h1, h2 {
+        padding: 10px;
+      }
+      
+      h1 {
+        background-color: #4CAF50;
+        color: #fff;
+        border-radius: 5px;
+        text-align: center;
+      }
+      
+      h2 {
+        font-size: 20px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Math Game</h1>
+    <h1>תרגילי כפל</h1>
     <p>Enter your answer and click "Check" to see if you're correct.</p>
     <p id="question"></p>
     <input type="number" id="answer" />
@@ -32,14 +56,14 @@
       function checkAnswer() {
         var playerAnswer = parseInt(document.getElementById("answer").value);
         if (playerAnswer === correctAnswer) {
-          document.getElementById("result").innerHTML = "Correct!";
+          document.getElementById("result").innerHTML = "יפה מאוד";
           correctAnswersInARow++;
           score++;
           document.getElementById("score").innerHTML = "Score: " + score;
           if (correctAnswersInARow === 5) {
             alert("Congratulations, you won!");
           }
-          exerciseList.push({ exercise: document.getElementById("question").textContent, answer: playerAnswer, result: "Correct!" });
+          exerciseList.push({ exercise: document.getElementById("question").textContent, answer: playerAnswer, result: "יפה מאוד" });
         } else {
           document.getElementById("result").innerHTML = "Incorrect. The correct answer was " + correctAnswer;
           correctAnswersInARow = 0;
